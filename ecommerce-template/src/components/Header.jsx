@@ -6,7 +6,7 @@ import cartIcon from '../assets/cart-icon.png';
 function Header() {
   const navigate = useNavigate(); 
 
-  function handleClick() {
+  function openCart() {
     navigate('/cart');
   }
 
@@ -14,7 +14,7 @@ function Header() {
     <header className="header-app">
       <img src={logoEcommerce} alt="Logo e-commerce" className="logo" />
       <SearchBar />
-      <button className="cart-button" onClick={handleClick} >
+      <button className="cart-button" onClick={openCart} >
         <img src={cartIcon} alt="Boton de Carrito" className="cart-icon" />
       </button>
     </header>

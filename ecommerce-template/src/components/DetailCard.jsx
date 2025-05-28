@@ -7,22 +7,21 @@ import QuantitySelector from "./QuantitySelector";
 function DetailCard(props){
     const subtotal = props.price * props.quantity;
     return(
-        <div className="detail-card">
-            <div className="detail-card-left-section">
-                <img src={props.product_image} alt="Image product ${props.product_name}" className="detail-card-image" />
-                <h3 className="detail-card-name" >{props.product_name}</h3>
+        <>
+            <div className="grid-item product-info">
+              <img src={props.product_image} alt={props.product_name} className="product-image" />
+              <span>{props.product_name}</span>
             </div>
-            <div className="detail-card-right-section">
-                <div className="detail-card-price-qty">
-                    <span className="detail-card-price">${props.price.toFixed(2)}</span>
-                    <QuantitySelector quantity={props.quantity} setQuantity={props.setQuantity} ></QuantitySelector>
-                </div>
-
-                 <div className="detail-card-divider"></div>
-
-                <span>${subtotal.toFixed(2)}</span>
+            <div className="grid-item">{props.price}</div>
+            <div className="grid-item">
+              <div className="quantity-selector">
+                <button onClick={() => props.setQuantity(props.quantity - 1)}>-</button>
+                <input type="number" value={props.quantity} readOnly />
+                <button onClick={() => props.setQuantity(props.quantity + 1)}>+</button>
+              </div>
             </div>
-        </div>
+            <div className="grid-item">{props.price * props.quantity}</div>
+        </>
     );
 }
 

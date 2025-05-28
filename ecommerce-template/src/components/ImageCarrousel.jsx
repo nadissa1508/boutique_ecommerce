@@ -1,9 +1,17 @@
+ import starIcon from '../assets/star.png';
+
 function ImageCarrousel({ images, cantStars }) {
   return (
     <div className="image-carrousel-container">
       <div className="image-carrousel-stars">
-        <img src="./assets/star.png" alt="Stars" className="star" />
-        <p>{cantStars}</p>  
+        {Array.from({ length: cantStars }).map((_, index) => (
+          <img 
+            key={index} 
+            src={starIcon} 
+            alt="Star" 
+            className="star-icon" 
+          />
+        ))} 
       </div>
       <div className="image-carrousel-background">
 

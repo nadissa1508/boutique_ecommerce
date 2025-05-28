@@ -5,14 +5,14 @@ import Footer from '../components/Footer';
 
 const products = [
   {
-    product_image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc1yhbYKc06NZ-HSGmRtr-FYY41PW1QC4YvQ&s",
+    product_image: "https://i.pinimg.com/236x/96/a4/17/96a417f13031ea47fe6e0f089b4f069d.jpg",
     product_name: "Product 1",
     price: 10,
     quantity: 1,
     setQuantity: () => {},
   },
   {
-    product_image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc1yhbYKc06NZ-HSGmRtr-FYY41PW1QC4YvQ&s",
+    product_image: "https://i.pinimg.com/236x/96/a4/17/96a417f13031ea47fe6e0f089b4f069d.jpg",
     product_name: "Product 2",
     price: 20,
     quantity: 2,
@@ -24,9 +24,15 @@ function Cart() {
   return (
     <div className="Cart-page">
       <Header />
-      <Button text="Vaciar carrito"/>
-      <ProductCart products={products} />
-      <Button text="Pagar pedido"/>
+      <div className="button-container-cart">
+        <Button text="Vaciar carrito"/>
+      </div>
+      <div className="cart-background">    
+        <ProductCart products={products} />
+      </div>
+      <div className="button-container-cart">
+        <Button text="Pagar pedido"/>
+      </div>
       <Footer />
     </div>
   );
