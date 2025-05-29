@@ -45,6 +45,12 @@ body {
 
 /* Luego del Hero banner */
 
+.title-productlist {
+  text-align: center;
+  padding: 10px;
+  padding-top: 55px; 
+}
+
 .card-products{
   display: flex;
   flex-wrap: wrap;
@@ -192,30 +198,47 @@ body {
 
 /* Product card */
 .product-card {
-  background-color: #c26578;
+  background-color: #d4798b;
   border-radius: 25px;
   padding: 20px;
   text-align: center;
   width: 200px;
-  height: 300px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  height: 390px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+  position: relative;
+  overflow: hidden; 
 }
 
 .image-product {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: 25px;
 }
 
 .product-name, .product-price {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #ffffff;
 }
 
-.eye-icon, .empty-heart-icon {
-  width: 25px;
-  height: 25px;
+.product-price {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.empty-heart-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.eye-icon {
+  width: 35px;
+  height: 35px;
+  transform: translateY(-5px);
 }
 
 .buttons-product-card {
@@ -226,13 +249,35 @@ body {
 }
 
 .eye-btn, .empty-heart-btn {
-  background-color: #bb5469;
+  background-color: #d4798b;
   width: 50px;
   height: 50px;
   border: none;
   border-radius: 20px;
   padding: 10px;
   cursor: pointer;
+}
+
+.product-discount-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff4d4d;
+  color: white;
+  font-size: 1rem;
+  text-decoration: line-through;
+  padding: 4px 8px;
+  border-radius: 25px;
+  width: 60px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-price {
+  color: #ffffff;
+  font-size: 1.5rem;
 }
 
 /* SearchBar */
@@ -296,7 +341,7 @@ body {
   padding: 1rem;
   margin: 1rem auto;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   text-align: left;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
@@ -325,6 +370,8 @@ body {
 
 .dropdown-content {
   padding-top: 1rem;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
 }
 
 .card-container {
@@ -651,4 +698,18 @@ h3 {
 .buy-section .app-button {
   margin-top: 1rem;
   margin-bottom: 2rem; 
+}
+
+.alert-backdrop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  display: flex; justify-content: center; align-items: center;
+}
+.alert-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px black;
 }

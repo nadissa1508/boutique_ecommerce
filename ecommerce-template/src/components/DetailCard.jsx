@@ -1,28 +1,37 @@
-//carta para el detalle de un producto en el carrito
-// ver si le agrego un dropdown para ver más detalles del producto abajo de la imagen
-
 import QuantitySelector from "./QuantitySelector";
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext'; 
 
 
-function DetailCard(props){
-    const subtotal = props.price * props.quantity;
-    return(
+function DetailCard({ id, product_image, product_name, price, discount }){
+  const { cart, addToCart } = useContext(CartContext);
+  const product = cart.find(item => item.id === id);
+  const quantity = product ? product.quantity : 1;
+  const actualPrice = price - (product?.discount || 0);
+  const subtotal = actualPrice * quantity;
+
+  const handleSetQuantity = (newQuantity) => {
+    const difference = newQuantity - quantity;
+    if (difference !== 0) {
+      addToCart({ id, product_image, product_name, price }, difference);
+    }
+  };
+
+  return(
         <>
-            <div className="grid-item product-info">
-              <img src={props.product_image} alt={props.product_name} className="product-image" />
-              <span>{props.product_name}</span>
+          <div className="grid-item product-info">
+            <img src={product_image} alt={product_name} className="product-image" />
+            <span>{product_name}</span>
+          </div>
+          <div className="grid-item">{actualPrice.toFixed(2)}</div>
+          <div className="grid-item">
+            <div className="quantity-selector">
+              <QuantitySelector quantity={quantity} setQuantity={handleSetQuantity} />
             </div>
-            <div className="grid-item">{props.price}</div>
-            <div className="grid-item">
-              <div className="quantity-selector">
-                <button onClick={() => props.setQuantity(props.quantity - 1)}>-</button>
-                <input type="number" value={props.quantity} readOnly />
-                <button onClick={() => props.setQuantity(props.quantity + 1)}>+</button>
-              </div>
-            </div>
-            <div className="grid-item">{props.price * props.quantity}</div>
-        </>
-    );
+          </div>
+          <div className="grid-item">{subtotal.toFixed(2)}</div>
+      </>
+  );
 }
 
 export default DetailCard;

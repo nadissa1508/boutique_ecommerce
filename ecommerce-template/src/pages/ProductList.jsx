@@ -3,76 +3,69 @@ import HeroBanner from '../components/HeroBanner';
 import ProductCard from '../components/ProductCard';
 import FavProductCard from '../components/FavProductCard';
 import Footer from '../components/Footer';
-
-const products = [
-  {
-    id: 1,
-    product_image: "https://i.pinimg.com/236x/96/a4/17/96a417f13031ea47fe6e0f089b4f069d.jpg",
-    product_name: "Product prueba 1",
-    price: 100,
-  },
-  {
-    id: 2,
-    product_image: "https://i.pinimg.com/236x/96/a4/17/96a417f13031ea47fe6e0f089b4f069d.jpg",
-    product_name: "Product prueba 2",
-    price: 150,
-  },
-  {
-    id: 3,
-    product_image: "https://i.pinimg.com/236x/96/a4/17/96a417f13031ea47fe6e0f089b4f069d.jpg",
-    product_name: "Product prueba 3",
-    price: 200,
-  },
-  {
-    id: 4,
-    product_image: "https://i.pinimg.com/236x/96/a4/17/96a417f13031ea47fe6e0f089b4f069d.jpg",
-    product_name: "Product prueba 4",
-    price: 100,
-  },
-  {
-    id: 5,
-    product_image: "https://i.pinimg.com/236x/96/a4/17/96a417f13031ea47fe6e0f089b4f069d.jpg",
-    product_name: "Product prueba 5",
-    price: 300,
-  },
-  {
-    id: 6,
-    product_image: "https://i.pinimg.com/236x/96/a4/17/96a417f13031ea47fe6e0f089b4f069d.jpg",
-    product_name: "Product prueba 6",
-    price: 400,
-  },
-  {
-    id: 7,
-    product_image: "https://i.pinimg.com/236x/96/a4/17/96a417f13031ea47fe6e0f089b4f069d.jpg",
-    product_name: "Product prueba 7",
-    price: 500,
-  },
-  {
-    id: 8,
-    product_image: "https://i.pinimg.com/236x/96/a4/17/96a417f13031ea47fe6e0f089b4f069d.jpg",
-    product_name: "Product prueba 8",
-    price: 600,
-  },
-]
+import jsonProducts from '../components/products.json'
+import { useRef, useMemo, useState } from 'react';
 
 function ProductList() {
+  const [_, forceUpdate] = useState(false); 
+  const favoriteRef = useRef(JSON.parse(localStorage.getItem('favoriteProducts')) || []);
+  const viewedRef = useRef(JSON.parse(localStorage.getItem('viewedProducts')) || []);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const toggleFavorite = (productId) => {
+    const index = favoriteRef.current.indexOf(productId);
+    if (index >= 0) {
+      favoriteRef.current.splice(index, 1); 
+    } else {
+      favoriteRef.current.push(productId); 
+    }
+    localStorage.setItem('favoriteProducts', JSON.stringify(favoriteRef.current));
+    forceUpdate(f => !f); 
+  };
+
+  const handleView = (productId) => {
+    if (!viewedRef.current.includes(productId)) {
+      viewedRef.current.push(productId);
+      localStorage.setItem('viewedProducts', JSON.stringify(viewedRef.current));
+      forceUpdate(f => !f); 
+    }
+  };
+
+  const favoriteProducts = jsonProducts.products.filter(p =>
+    favoriteRef.current.includes(p.id)
+  );
+
+  const recommendedProducts = useMemo(() => {
+    return jsonProducts.products.filter(p => viewedRef.current.includes(p.id));
+  }, [_, favoriteRef]);
+
+  const filteredProducts = jsonProducts.products.filter((product) =>
+    product.product_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="ProductList-page">
-      <Header />
+      <Header searchTerm={searchTerm} onSearchChange={setSearchTerm} />
       <HeroBanner />
+      <h1 className="title-productlist" >Productos disponibles</h1>
       <div className="card-products">
-        {products.map((product, index) => (
+        {filteredProducts.map((product) => (
           <ProductCard
-            key={index}
+            key={product.id}
+            product_id={product.id}
             product_image={product.product_image}
             product_name={product.product_name}
             price={product.price}
+            discount={product.discount}
+            onToggleFavorite={() => toggleFavorite(product.id)}
+            isFavorite={favoriteRef.current.includes(product.id)}
+            onView={() => handleView(product.id)}
           />
         ))}
       </div>
       <div className="card-products">
-        <FavProductCard title="Favoritos" products={products} />
-        <FavProductCard title="Recomendados" products={products} />
+        <FavProductCard title="Favoritos" products={favoriteProducts} favoriteRef={favoriteRef} toggleFavorite={toggleFavorite} />
+        <FavProductCard title="Recomendados" products={recommendedProducts} favoriteRef={favoriteRef} toggleFavorite={toggleFavorite}  />
       </div>  
       <Footer />
     </div>

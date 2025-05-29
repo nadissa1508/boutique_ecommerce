@@ -16,7 +16,10 @@ function QuantitySelector({ quantity, setQuantity }) {
       />
       <button
         className="plus-btn"
-        onClick={() => setQuantity(quantity + 1)}
+        onClick={() => {
+          if (quantity < 9) setQuantity(quantity + 1);
+        }} 
+        disabled = {quantity >= 9}
       >
         +
       </button>

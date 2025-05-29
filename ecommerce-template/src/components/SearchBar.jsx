@@ -1,15 +1,19 @@
 import searchIcon from "../assets/search.png";
 
-//falta poner icono de búsqueda
-function SearchBar() {
+function SearchBar({ searchTerm, onSearchChange }) {
   return (
     <div className="search-bar">
-        <input type="text" placeholder="Buscar productos..." />
-        <button type="submit">
-            <img src={searchIcon} alt="Search" className="search-icon" />
-        </button>
+      <input
+        type="text"
+        placeholder="Buscar productos..."
+        value={searchTerm}
+        onChange={(e) => onSearchChange(e.target.value)}
+      />
+      <button type="submit">
+        <img src={searchIcon} alt="Search" className="search-icon" />
+      </button>
     </div>
   );
-}   
+}
 
 export default SearchBar;
