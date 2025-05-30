@@ -6,7 +6,7 @@ import Button from '../components/Button';
 import Footer from '../components/Footer';
 import jsonProducts from '../components/products.json'; 
 import { useParams } from 'react-router-dom';
-import {useState, useContext} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import { CartContext } from '../context/CartContext'; 
 
 function ProductDetail() {
@@ -14,6 +14,10 @@ function ProductDetail() {
   const { addToCart } = useContext(CartContext);
   const product = jsonProducts.products.find(p => p.id.toString() === id);
   const [quantity, setQuantity ] = useState(1);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [])
 
   const handleAddToCart = () => {
     addToCart(product, quantity);

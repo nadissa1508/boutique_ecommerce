@@ -3,10 +3,16 @@ import ProductCart from '../components/ProductCart';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import { CartContext } from '../context/CartContext'; 
-import { useContext } from 'react';
+import { useContext, useRef, useEffect } from 'react';
 
 function Cart() {
   const { cart, clearCart } = useContext(CartContext);
+
+  const topRef = useRef(null)
+
+  useEffect(() => {
+    topRef.current?.scrollIntoView({ behavior: 'instant' })
+  }, [])
 
   const handlePayment = () => {
     const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);

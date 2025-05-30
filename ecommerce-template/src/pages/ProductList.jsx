@@ -4,13 +4,19 @@ import ProductCard from '../components/ProductCard';
 import FavProductCard from '../components/FavProductCard';
 import Footer from '../components/Footer';
 import jsonProducts from '../components/products.json'
-import { useRef, useMemo, useState } from 'react';
+import { useRef, useEffect, useMemo, useState } from 'react';
 
 function ProductList() {
   const [_, forceUpdate] = useState(false); 
   const favoriteRef = useRef(JSON.parse(localStorage.getItem('favoriteProducts')) || []);
   const viewedRef = useRef(JSON.parse(localStorage.getItem('viewedProducts')) || []);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const topRef = useRef(null)
+
+  useEffect(() => {
+    topRef.current?.scrollIntoView({ behavior: 'instant' })
+  }, [])
 
   const toggleFavorite = (productId) => {
     const index = favoriteRef.current.indexOf(productId);
