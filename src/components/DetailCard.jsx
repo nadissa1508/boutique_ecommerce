@@ -7,7 +7,7 @@ function DetailCard({ id, product_image, product_name, price, discount }){
   const { cart, addToCart } = useContext(CartContext)
   const product = cart.find(item => item.id === id)
   const quantity = product ? product.quantity : 1
-  const actualPrice = price - (product?.discount || 0)
+  const actualPrice = price - (discount || 0)
   const subtotal = actualPrice * quantity
 
   const handleSetQuantity = (newQuantity) => {
