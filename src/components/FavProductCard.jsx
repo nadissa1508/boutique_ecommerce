@@ -1,12 +1,12 @@
-import { useState } from "react";
-import ProductCard from "./ProductCard";
+import { useState } from "react"
+import ProductCard from "./ProductCard"
 
 function FavProductCard({ title, products, favoriteRef, toggleFavorite }) {
-  const [isOpen, setIsOpen] = useState(false); 
+  const [isOpen, setIsOpen] = useState(false) 
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   return (
     <div className="dropdown-card">
@@ -32,7 +32,7 @@ function FavProductCard({ title, products, favoriteRef, toggleFavorite }) {
       </div>
       )}
     </div>
-  );
+  )
 }
 
-export default FavProductCard;
+export default FavProductCard

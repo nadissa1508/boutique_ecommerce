@@ -1,8 +1,8 @@
-import FooterDetail from './FooterDetail';
-import facebookIcon from '../assets/facebook.png';
-import instagramIcon from '../assets/instagram.png';
-import twitterIcon from '../assets/X.png';
-import tiktokIcon from '../assets/tik-tok.png';
+import FooterDetail from './FooterDetail'
+import facebookIcon from '../assets/facebook.png'
+import instagramIcon from '../assets/instagram.png'
+import twitterIcon from '../assets/X.png'
+import tiktokIcon from '../assets/tik-tok.png'
 
 const linksAboutUs = [
     { key: 1, text: 'Nuestra historia', url: '#' },
@@ -15,7 +15,7 @@ const linksResolvingDoubts = [
   { key: 2, text: 'Politicas de compra', url: '#' },
   { key: 3, text: 'Pagos y envios', url: '#' },
   { key: 4, text: 'Términos y condiciones', url: '#' },
-];
+]
 
 function Footer() {
   return (
@@ -54,7 +54,7 @@ function Footer() {
         <p>&copy; 2025 Blush & Blossom Store. Todos los derechos reservados</p>
       </div>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

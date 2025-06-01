@@ -1,21 +1,21 @@
-import QuantitySelector from "./QuantitySelector";
-import { useContext } from 'react';
-import { CartContext } from '../context/CartContext'; 
+import QuantitySelector from "./QuantitySelector"
+import { useContext } from 'react'
+import { CartContext } from '../context/CartContext' 
 
 
 function DetailCard({ id, product_image, product_name, price, discount }){
-  const { cart, addToCart } = useContext(CartContext);
-  const product = cart.find(item => item.id === id);
-  const quantity = product ? product.quantity : 1;
-  const actualPrice = price - (product?.discount || 0);
-  const subtotal = actualPrice * quantity;
+  const { cart, addToCart } = useContext(CartContext)
+  const product = cart.find(item => item.id === id)
+  const quantity = product ? product.quantity : 1
+  const actualPrice = price - (product?.discount || 0)
+  const subtotal = actualPrice * quantity
 
   const handleSetQuantity = (newQuantity) => {
-    const difference = newQuantity - quantity;
+    const difference = newQuantity - quantity
     if (difference !== 0) {
-      addToCart({ id, product_image, product_name, price }, difference);
+      addToCart({ id, product_image, product_name, price }, difference)
     }
-  };
+  }
 
   return(
         <>
@@ -31,8 +31,8 @@ function DetailCard({ id, product_image, product_name, price, discount }){
           </div>
           <div className="grid-item">{subtotal.toFixed(2)}</div>
       </>
-  );
+  )
 }
 
-export default DetailCard;
+export default DetailCard
 

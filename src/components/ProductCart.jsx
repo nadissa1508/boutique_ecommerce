@@ -1,13 +1,13 @@
-import { useMemo } from 'react';
-import DetailCard from "./DetailCard";
+import { useMemo } from 'react'
+import DetailCard from "./DetailCard"
 
 function ProductCart({ products }) {
   const total = useMemo(() => {
     return products.reduce((acc, item) => {
-      const actualPrice = item.discount ? item.price - item.discount : item.price;
-      return acc + actualPrice * item.quantity;
-    }, 0);
-  }, [products]);
+      const actualPrice = item.discount ? item.price - item.discount : item.price
+      return acc + actualPrice * item.quantity
+    }, 0)
+  }, [products])
   
   return (
     <div className="product-cart">
@@ -34,7 +34,7 @@ function ProductCart({ products }) {
         <h1 className="total-cart-variable">Q{total.toFixed(2)}</h1>
       </div>
     </div>
-  );
+  )
 }
 
-export default ProductCart;
+export default ProductCart

@@ -1,4 +1,4 @@
-import ImageCarrousel from './ImageCarrousel';
+import ImageCarrousel from './ImageCarrousel'
 
 function ProductDescription({ product }) {
   return (
@@ -18,7 +18,7 @@ function ProductDescription({ product }) {
         </div>    
         <ImageCarrousel images={[product.product_image]} cantStars={product.cant_stars} />
     </div>
-  );
+  )
 }
 
-export default ProductDescription;
+export default ProductDescription

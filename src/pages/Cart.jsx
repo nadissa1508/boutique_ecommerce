@@ -1,12 +1,12 @@
-import Header from '../components/Header';
-import ProductCart from '../components/ProductCart';
-import Button from '../components/Button';
-import Footer from '../components/Footer';
-import { CartContext } from '../context/CartContext'; 
-import { useContext, useRef, useEffect } from 'react';
+import Header from '../components/Header'
+import ProductCart from '../components/ProductCart'
+import Button from '../components/Button'
+import Footer from '../components/Footer'
+import { CartContext } from '../context/CartContext' 
+import { useContext, useRef, useEffect } from 'react'
 
 function Cart() {
-  const { cart, clearCart } = useContext(CartContext);
+  const { cart, clearCart } = useContext(CartContext)
 
   const topRef = useRef(null)
 
@@ -15,8 +15,8 @@ function Cart() {
   }, [])
 
   const handlePayment = () => {
-    const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    if (total > 999.99) { alert("ERROR: El total excede los $999.99"); } else { alert("Pago procesado correctamente"); }
+    const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
+    if (total > 999.99) { alert("ERROR: El total excede los $999.99") } else { alert("Pago procesado correctamente") }
   }
 
   return (
@@ -24,7 +24,7 @@ function Cart() {
       <Header />
       <div className="button-container-cart">
         <Button text="Vaciar carrito" onClick={() => {
-          clearCart();
+          clearCart()
         }} />
       </div>
       <div className="cart-background"> 
@@ -39,7 +39,7 @@ function Cart() {
       </div>
       <Footer />
     </div>
-  );
+  )
 }
 
-export default Cart;
+export default Cart

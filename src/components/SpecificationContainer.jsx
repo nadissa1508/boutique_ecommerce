@@ -10,7 +10,7 @@ function SpecificationContainer({ title, elements }) {
         ))}
       </ul>
     </div>
-  );
+  )
 }
 
-export default SpecificationContainer;
+export default SpecificationContainer

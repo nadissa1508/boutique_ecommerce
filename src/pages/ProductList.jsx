@@ -1,16 +1,16 @@
-import Header from '../components/Header';
-import HeroBanner from '../components/HeroBanner';
-import ProductCard from '../components/ProductCard';
-import FavProductCard from '../components/FavProductCard';
-import Footer from '../components/Footer';
+import Header from '../components/Header'
+import HeroBanner from '../components/HeroBanner'
+import ProductCard from '../components/ProductCard'
+import FavProductCard from '../components/FavProductCard'
+import Footer from '../components/Footer'
 import jsonProducts from '../components/products.json'
-import { useRef, useEffect, useMemo, useState } from 'react';
+import { useRef, useEffect, useMemo, useState } from 'react'
 
 function ProductList() {
-  const [_, forceUpdate] = useState(false); 
-  const favoriteRef = useRef(JSON.parse(localStorage.getItem('favoriteProducts')) || []);
-  const viewedRef = useRef(JSON.parse(localStorage.getItem('viewedProducts')) || []);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [_, forceUpdate] = useState(false) 
+  const favoriteRef = useRef(JSON.parse(localStorage.getItem('favoriteProducts')) || [])
+  const viewedRef = useRef(JSON.parse(localStorage.getItem('viewedProducts')) || [])
+  const [searchTerm, setSearchTerm] = useState("")
 
   const topRef = useRef(null)
 
@@ -19,35 +19,35 @@ function ProductList() {
   }, [])
 
   const toggleFavorite = (productId) => {
-    const index = favoriteRef.current.indexOf(productId);
+    const index = favoriteRef.current.indexOf(productId)
     if (index >= 0) {
-      favoriteRef.current.splice(index, 1); 
+      favoriteRef.current.splice(index, 1) 
     } else {
-      favoriteRef.current.push(productId); 
+      favoriteRef.current.push(productId) 
     }
-    localStorage.setItem('favoriteProducts', JSON.stringify(favoriteRef.current));
-    forceUpdate(f => !f); 
-  };
+    localStorage.setItem('favoriteProducts', JSON.stringify(favoriteRef.current))
+    forceUpdate(f => !f) 
+  }
 
   const handleView = (productId) => {
     if (!viewedRef.current.includes(productId)) {
-      viewedRef.current.push(productId);
-      localStorage.setItem('viewedProducts', JSON.stringify(viewedRef.current));
-      forceUpdate(f => !f); 
+      viewedRef.current.push(productId)
+      localStorage.setItem('viewedProducts', JSON.stringify(viewedRef.current))
+      forceUpdate(f => !f) 
     }
-  };
+  }
 
   const favoriteProducts = jsonProducts.products.filter(p =>
     favoriteRef.current.includes(p.id)
-  );
+  )
 
   const recommendedProducts = useMemo(() => {
-    return jsonProducts.products.filter(p => viewedRef.current.includes(p.id));
-  }, [_, favoriteRef]);
+    return jsonProducts.products.filter(p => viewedRef.current.includes(p.id))
+  }, [_, favoriteRef])
 
   const filteredProducts = jsonProducts.products.filter((product) =>
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  )
 
   return (
     <div className="ProductList-page">
@@ -75,7 +75,7 @@ function ProductList() {
       </div>  
       <Footer />
     </div>
-  );
+  )
 }   
 
-export default ProductList;
+export default ProductList

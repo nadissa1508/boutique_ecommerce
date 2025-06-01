@@ -4,7 +4,7 @@ function Button({text, onClick}) {
         <button className="app-button" onClick={onClick}>
             {text}
         </button>
-    );
+    )
 }
 
-export default Button;
+export default Button

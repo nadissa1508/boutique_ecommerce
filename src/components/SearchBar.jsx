@@ -1,4 +1,4 @@
-import searchIcon from "../assets/search.png";
+import searchIcon from "../assets/search.png"
 
 function SearchBar({ searchTerm, onSearchChange }) {
   return (
@@ -13,7 +13,7 @@ function SearchBar({ searchTerm, onSearchChange }) {
         <img src={searchIcon} alt="Search" className="search-icon" />
       </button>
     </div>
-  );
+  )
 }
 
-export default SearchBar;
+export default SearchBar

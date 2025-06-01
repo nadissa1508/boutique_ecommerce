@@ -1,17 +1,17 @@
-import { useNavigate } from 'react-router-dom';
-import SearchBar from './SearchBar';
-import logoEcommerce from '../assets/logo-blush-blossom.png';
-import cartIcon from '../assets/cart-icon.png';
+import { useNavigate } from 'react-router-dom'
+import SearchBar from './SearchBar'
+import logoEcommerce from '../assets/logo-blush-blossom.png'
+import cartIcon from '../assets/cart-icon.png'
 
 function Header(props) {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate() 
 
   function openCart() {
-    navigate('/cart');
+    navigate('/cart')
   }
 
   function handleClick(){
-    navigate('/');
+    navigate('/')
   }
   return (
     <header className="header-app">
@@ -21,7 +21,7 @@ function Header(props) {
         <img src={cartIcon} alt="Boton de Carrito" className="cart-icon" />
       </button>
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

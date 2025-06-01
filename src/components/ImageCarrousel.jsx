@@ -1,4 +1,4 @@
- import starIcon from '../assets/star.png';
+ import starIcon from '../assets/star.png'
 
 function ImageCarrousel({ images, cantStars }) {
   return (
@@ -28,7 +28,7 @@ function ImageCarrousel({ images, cantStars }) {
       </div>
     </div>
     
-  );
+  )
 }
 
-export default ImageCarrousel;
+export default ImageCarrousel

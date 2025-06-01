@@ -1,5 +1,5 @@
-import Button from './Button';
-import heroBannerImg from '../assets/hero-banner.webp';
+import Button from './Button'
+import heroBannerImg from '../assets/hero-banner.webp'
 
 function HeroBanner() {
   return (
@@ -14,7 +14,7 @@ function HeroBanner() {
         <Button text="Comprar ahora" ></Button>
       </div>
     </div>
-  );
+  )
 }   
 
-export default HeroBanner;
+export default HeroBanner

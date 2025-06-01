@@ -10,7 +10,7 @@ function FooterDetail({title, links}) {
             ))}
         </div>
     </div>
-    );
+    )
 }
 
-export default FooterDetail;
+export default FooterDetail
